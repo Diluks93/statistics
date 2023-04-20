@@ -21,3 +21,10 @@ export const Logo = styled.img`
 export const Link = styled.a`
   color: ${({ theme }) => theme.colors.lightBlue};
 `;
+
+export const Block = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em;
+`;
