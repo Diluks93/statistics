@@ -1,5 +1,5 @@
 export enum Router {
-  home = '/',
+  home = '/home',
   statistics = '/statistics',
   contacts = '/contacts',
 }

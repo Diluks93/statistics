@@ -13,7 +13,7 @@ export const FormField = ({ name, handle, value }: FormFieldProps) => {
       <Styled.Label htmlFor={name}>Enter {name} name:</Styled.Label>
       <Styled.Input
         type="text"
-        placeholder="Name owner repositories"
+        placeholder={`Enter ${name} name`}
         value={value}
         onChange={handle}
         required
