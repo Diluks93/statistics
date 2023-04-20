@@ -1,63 +1,53 @@
-import Highcharts from 'highcharts/highstock';
-import HighchartsReact from 'highcharts-react-official';
-import highchartsExporting from 'highcharts/modules/exporting';
-import highchartsExportData from 'highcharts/modules/export-data';
-import highchartsAccessibility from 'highcharts/modules/accessibility';
-import { Component } from 'react';
+import { getRequest } from 'api';
+import { ApiRequest } from 'api/model';
+import { Chart } from 'components/Chart';
+import { Form } from 'components/Form';
+import { useCallback, useState } from 'react';
 
-highchartsExporting(Highcharts);
-highchartsExportData(Highcharts);
-highchartsAccessibility(Highcharts);
+import * as UI from 'components/ui/Stack';
 
-export default class Statistics extends Component<
-  Record<string, never>,
-  Record<string, any>
-> {
-  constructor(props: Record<string, never>) {
-    super(props);
+export const Statistics = () => {
+  const [response, setResponse] = useState<ApiRequest>();
+  const [error, setError] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
+  const [showChart, setShowChart] = useState<boolean>(false);
+  const [state, setState] = useState({ owner: '', repo: '' });
 
-    this.state = {
-      options: {
-        chart: {
-          events: {
-            render: function () {
-              const btn = document.querySelector(
-                '.highcharts-a11y-proxy-button.highcharts-no-tooltip',
-              ) as HTMLElement;
-              if (btn && !btn.title)
-                btn.title =
-                  Highcharts.getOptions().lang?.contextButtonTitle ??
-                  'Chart context menu';
-            },
-          },
-        },
-        exporting: {
-          buttons: {
-            contextButton: {
-              symbol: 'menuball',
-              y: -2,
-              menuItems: [
-                'printChart',
-                'separator',
-                'downloadJPEG',
-                'downloadPDF',
-                'downloadCSV',
-              ],
-            },
-          },
-        },
-        series: [
-          {
-            data: [1, 2, 3],
-          },
-        ],
-      },
-    };
-  }
+  const fetchRequest = useCallback(async (data: typeof state) => {
+    setLoading(true);
+    try {
+      setResponse(await getRequest(data.owner, data.repo));
+      setState({ ...data });
+      setLoading(false);
+      setError('');
+    } catch (err) {
+      setError('Something went wrong');
+      setLoading(false);
+      setShowChart(false);
+    }
+  }, []);
 
-  render() {
-    return (
-      <HighchartsReact highcharts={Highcharts} options={this.state.options} />
-    );
-  }
-}
+  const handleSubmit = (data: typeof state) => {
+    fetchRequest(data);
+    setShowChart(true);
+  };
+
+  return (
+    <>
+      <Form initialState={state} onSubmit={handleSubmit} />
+      {showChart && !loading && (
+        <Chart
+          owner={state.owner}
+          data={response?.data.map(({ total }) => total)}
+        />
+      )}
+      {error && (
+        <UI.Stack>
+          <h1>{error}</h1>
+        </UI.Stack>
+      )}
+    </>
+  );
+};
+
+export default Statistics;

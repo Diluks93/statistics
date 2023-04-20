@@ -1,15 +1,18 @@
 import { Routes, Route } from 'react-router-dom';
 
-import Home from 'pages/Home';
-import Contacts from 'pages/Contacts';
-import Statistics from 'pages/Statistics';
+import HomePage from 'pages/Home';
+import ContactsPage from 'pages/Contacts';
+import StatisticsPage from 'pages/Statistics';
+import ErrorPage from 'pages/Error';
+import { Router } from 'router';
 
 export const Main = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/contacts" element={<Contacts />} />
-      <Route path="/statistics" element={<Statistics />} />
+      <Route path={Router.home} element={<HomePage />} />
+      <Route path={Router.contacts} element={<ContactsPage />} />
+      <Route path={Router.statistics} element={<StatisticsPage />} />
+      <Route path="*" element={<ErrorPage />} />
     </Routes>
   );
 };
