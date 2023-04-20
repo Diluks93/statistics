@@ -2,6 +2,7 @@
   "name": "statistics",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://diluks93.github.io/statistics",
   "dependencies": {
     "@octokit/core": "^4.2.0",
     "highcharts": "^10.3.3",
@@ -21,7 +22,9 @@
     "format": "prettier --write src/**/*.ts{,x}",
     "lint": "tsc --noEmit && eslint src/**/*.ts{,x}",
     "prepare": "husky install",
-    "docker": "docker compose up"
+    "docker": "docker compose up",
+    "predeploy" : "npm run build",
+    "deploy" : "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -65,6 +68,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "7.28.0",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "gh-pages": "^5.0.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.1",
     "prettier": "^2.8.7"
