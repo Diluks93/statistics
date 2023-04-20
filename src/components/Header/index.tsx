@@ -1,23 +1,13 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavigationList } from 'components/NavigationList';
+import * as Styled from './styled';
 
 export function Header() {
   return (
-    <header>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/contacts">Contacts</Link>
-          </li>
-          <li>
-            <Link to="/statistics">Statistics</Link>
-          </li>
-        </ul>
-      </nav>
-    </header>
+    <Styled.Header>
+      <Styled.Nav>
+        <NavigationList />
+      </Styled.Nav>
+    </Styled.Header>
   );
 }
 

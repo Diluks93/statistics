@@ -1,13 +1,11 @@
-import { useRouteError } from 'react-router-dom';
+import * as UI from 'components/ui/Stack';
 
 export default function ErrorPage() {
-  const error = useRouteError();
-  console.log(error);
   return (
-    <div>
+    <UI.Stack>
       <h1>Oops!</h1>
       <p>Sorry, an unexpected error has occurred.</p>
       <p>Something went wrong</p>
-    </div>
+    </UI.Stack>
   );
 }

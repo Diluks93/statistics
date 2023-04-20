@@ -8,10 +8,18 @@ export const GlobalStyle = createGlobalStyle`
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: ${({ theme }) => theme.colors.background};
+    font-size: ${({ theme }) => theme.fontSizes.small};
+    overflow: hidden;
+    min-height: 100vh;
   }
 
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
+  }
+
+  * {
+    box-sizing: border-box;
   }
 `;

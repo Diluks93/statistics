@@ -11,7 +11,7 @@ highchartsAccessibility(Highcharts);
 
 export default class Statistics extends Component<
   Record<string, never>,
-  Record<string, any>
+  Record<string, unknown>
 > {
   constructor(props: Record<string, never>) {
     super(props);

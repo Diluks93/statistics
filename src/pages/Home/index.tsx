@@ -1,23 +1,21 @@
 import logo from 'assets/icons/logo.svg';
+import * as UI from 'components/ui/Stack';
 import * as Styled from './styled';
 
 const Home = () => {
   return (
-    <Styled.App>
-      <Styled.Header>
-        <Styled.Logo src={logo} alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <Styled.Link
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </Styled.Link>
-      </Styled.Header>
-    </Styled.App>
+    <UI.Stack>
+      <Styled.Logo src={logo} alt="logo" />
+      <h1>Statistics GitHub</h1>
+      <p>This application about statistics from GitHub with Highcharts</p>
+      <Styled.Link
+        href="https://reactjs.org"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Learn React
+      </Styled.Link>
+    </UI.Stack>
   );
 };
 
