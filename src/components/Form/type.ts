@@ -1,6 +1,5 @@
 interface FormState {
   owner: string;
-  repo: string;
 }
 
 export interface FormProps {
