@@ -21,14 +21,12 @@ export const Form = ({ onSubmit, initialState }: FormProps) => {
     onSubmit(form);
     setForm({
       owner: '',
-      repo: '',
     });
   };
 
   return (
     <Styled.Form onSubmit={handleSubmit}>
       <FormField name="owner" value={form.owner} handle={handleChange} />
-      <FormField name="repo" value={form.repo} handle={handleChange} />
       <Styled.Button type="submit">Submit</Styled.Button>
     </Styled.Form>
   );
